@@ -1,0 +1,7 @@
+Antes de resolver qualquer coisa, o Δ (delta) já te entrega a resposta mais importante: quantas soluções existem.
+
+Pega a equação x² − 5x + 6 = 0. Substitui a, b e c na fórmula Δ = b² − 4ac e acha Δ = 1. Como Δ é maior que zero, já dá pra saber: essa equação tem duas raízes reais diferentes, antes mesmo de aplicar Bhaskara. Nesse caso, x = 2 e x = 3.
+
+Faz esse mesmo caminho com x² − 4x + 4 = 0. Qual é o Δ, e quantas raízes essa equação tem? Comenta sua resposta aqui embaixo.
+
+#matematicabasica #bhaskara #discriminante #ensinomedio #professoreric

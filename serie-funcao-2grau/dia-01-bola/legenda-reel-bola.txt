@@ -1,0 +1,9 @@
+Uma bola lançada pra cima sobe, atinge um ponto mais alto e desce. Esse desenho que ela faz no ar tem nome: parábola. É a curva de qualquer função do 2º grau.
+
+Não é só física de bola. A mesma curva aparece quando uma empresa calcula o preço ideal pra ter o maior lucro possível, ou quando um engenheiro desenha o arco de uma ponte. Sempre que existe um "ponto ótimo" — o máximo ou o mínimo de alguma coisa — tem uma parábola por trás.
+
+Essa semana eu vou abrir essa função parte por parte: o que cada letra da equação significa, o que ela revela sobre o gráfico, e como desenhar esse gráfico do zero.
+
+Salva esse post e me segue pra acompanhar a série.
+
+#funcaodosegundograu #matematicabasica #parabola #ensinomedio #professoreric

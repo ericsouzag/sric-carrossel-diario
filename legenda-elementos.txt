@@ -1,0 +1,11 @@
+Toda equação do 2º grau se escreve assim: ax² + bx + c = 0. Três letrinhas, três papéis diferentes.
+
+a multiplica o x² e decide a abertura da parábola: positivo abre pra cima, negativo abre pra baixo.
+b multiplica o x e ajuda a deslocar a curva pros lados.
+c é o número sozinho — é ele quem aparece quando x vale zero, no ponto onde a parábola corta o eixo Y.
+
+Guarda esses três papéis. Amanhã eu mostro o que cada um revela sobre o gráfico, incluindo como achar o ponto mais alto ou mais baixo da parábola.
+
+Salva esse post.
+
+#funcaodosegundograu #matematicabasica #equacaodosegundograu #ensinomedio #professoreric
