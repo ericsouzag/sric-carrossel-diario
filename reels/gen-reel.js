@@ -76,13 +76,14 @@ function generateReel({ slug, tag, headline, headlineHighlight, rows, footer, ct
   @keyframes up{ to{ opacity:1; transform:translateY(0); } }
   @keyframes popin{ to{ opacity:1; transform:scale(1); } }
 
-  .header{ position:absolute; top:48px; left:48px; right:48px; display:flex; align-items:center; justify-content:space-between; }
+  /* top:170px deixa espaço livre da área onde o Instagram sobrepõe avatar/usuário nos Reels — nunca coloque cabeçalho/texto antes disso */
+  .header{ position:absolute; top:170px; left:48px; right:48px; display:flex; align-items:center; justify-content:space-between; }
   .tag{ font-family:${FONT_MONO}; font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.65); }
-  .headline{ position:absolute; top:110px; left:48px; right:48px; margin:0; font-family:${FONT_HEAD}; font-weight:900; font-size:42px; line-height:1.2; letter-spacing:-0.01em; color:#fff; }
+  .headline{ position:absolute; top:212px; left:48px; right:48px; margin:0; font-family:${FONT_HEAD}; font-weight:900; font-size:36px; line-height:1.18; letter-spacing:-0.01em; color:#fff; }
   .highlight{ background:${T.YELLOW}; color:${T.DARK}; padding:0 8px; border-radius:4px; }
 
-  .card{ position:absolute; top:291px; left:48px; right:48px; padding:22px 34px; background:rgba(0,0,0,0.26); border:1px solid rgba(255,255,255,0.16); border-radius:20px; }
-  .row{ display:flex; flex-direction:column; gap:6px; padding:14px 0; }
+  .card{ position:absolute; top:368px; left:48px; right:48px; padding:18px 30px; background:rgba(0,0,0,0.26); border:1px solid rgba(255,255,255,0.16); border-radius:20px; }
+  .row{ display:flex; flex-direction:column; gap:4px; padding:10px 0; }
   .row + .row{ border-top:1px solid rgba(255,255,255,0.14); }
   .row-top{ display:flex; align-items:baseline; gap:18px; }
   .op{ font-family:${FONT_MONO}; font-size:24px; font-weight:700; color:rgba(255,255,255,0.55); min-width:72px; }
@@ -91,7 +92,8 @@ function generateReel({ slug, tag, headline, headlineHighlight, rows, footer, ct
   .val.hl{ font-size:38px; font-weight:800; color:${T.YELLOW_TINT}; }
   .note{ font-family:${FONT_BODY}; font-size:17px; line-height:1.3; color:rgba(255,255,255,0.62); }
 
-  .footer{ position:absolute; top:722px; left:48px; right:48px; margin:0; font-family:${FONT_HEAD}; font-weight:900; font-size:32px; line-height:1.3; color:${T.YELLOW_TINT}; }
+  /* ancorado pelo fundo (não pelo topo) pra sempre ficar logo acima do CTA, não importa quantas linhas o card acima ocupe */
+  .footer{ position:absolute; bottom:135px; left:48px; right:48px; margin:0; font-family:${FONT_HEAD}; font-weight:900; font-size:30px; line-height:1.25; color:${T.YELLOW_TINT}; }
 
   .cta{ position:absolute; bottom:48px; left:48px; right:48px; display:flex; flex-direction:column; gap:18px; }
   .cta-pill{ display:inline-flex; align-self:flex-start; align-items:center; padding:12px 22px; background:${T.YELLOW}; color:${T.DARK}; font-family:${FONT_BODY}; font-weight:700; font-size:15px; border-radius:30px; }

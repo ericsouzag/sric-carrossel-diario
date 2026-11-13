@@ -15,11 +15,12 @@
   @keyframes up{ to{ opacity:1; transform:translateY(0); } }
   @keyframes popin{ to{ opacity:1; transform:scale(1); } }
 
-  .header{ position:absolute; top:48px; left:48px; right:48px; display:flex; align-items:center; justify-content:space-between; }
+  /* top:170px deixa espaço livre da área onde o Instagram sobrepõe avatar/usuário nos Reels — nunca coloque cabeçalho/texto antes disso */
+  .header{ position:absolute; top:170px; left:48px; right:48px; display:flex; align-items:center; justify-content:space-between; }
   .tag{ font-family:'JetBrains Mono', 'Courier New', monospace; font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.65); }
-  .headline{ position:absolute; top:110px; left:48px; right:48px; margin:0; font-family:'Archivo', Georgia, serif; font-weight:900; font-size:38px; line-height:1.2; letter-spacing:-0.01em; color:#fff; }
+  .headline{ position:absolute; top:212px; left:48px; right:48px; margin:0; font-family:'Archivo', Georgia, serif; font-weight:900; font-size:36px; line-height:1.18; letter-spacing:-0.01em; color:#fff; }
 
-  .graphwrap{ position:absolute; top:300px; left:48px; right:48px; height:420px; }
+  .graphwrap{ position:absolute; top:360px; left:48px; right:48px; height:330px; }
   .axis{ stroke:rgba(255,255,255,0.4); stroke-width:2; }
   .parabola{ fill:none; stroke:#FFCE3D; stroke-width:5; stroke-linecap:round; stroke-linejoin:round;
     stroke-dasharray:1100; stroke-dashoffset:1100; animation:draw 4000ms linear forwards; animation-delay:1500ms; }
@@ -39,7 +40,8 @@
   .axislabel{ font-family:'JetBrains Mono', 'Courier New', monospace; font-size:13px; fill:rgba(255,255,255,0.5); }
   .ptlabel{ position:absolute; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:13px; font-weight:600; color:#FFCE3D; opacity:0; animation:up 0.5s cubic-bezier(.2,.7,.3,1) forwards; white-space:nowrap; }
 
-  .footer{ position:absolute; top:742px; left:48px; right:48px; margin:0; font-family:'Public Sans', system-ui, sans-serif; font-size:18px; line-height:1.45; color:rgba(255,255,255,0.82); }
+  /* ancorado pelo fundo (não pelo topo) pra sempre ficar logo acima do CTA */
+  .footer{ position:absolute; bottom:148px; left:48px; right:48px; margin:0; font-family:'Public Sans', system-ui, sans-serif; font-size:17px; line-height:1.4; color:rgba(255,255,255,0.82); }
 
   .cta{ position:absolute; bottom:48px; left:48px; right:48px; display:flex; flex-direction:column; gap:18px; }
   .cta-pill{ display:inline-flex; align-self:flex-start; align-items:center; padding:12px 22px; background:#FACC15; color:#1F2937; font-family:'Public Sans', system-ui, sans-serif; font-weight:700; font-size:15px; border-radius:30px; }
