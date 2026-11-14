@@ -19,7 +19,7 @@ async function main() {
 
   let browser;
   try {
-    browser = await chromium.launch();
+    browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   } catch (e) {
     browser = await chromium.launch({
       executablePath: 'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',

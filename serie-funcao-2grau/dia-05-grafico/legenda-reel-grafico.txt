@@ -1,0 +1,14 @@
+Juntando tudo que a gente viu nessa semana: o gráfico completo de f(x) = x² − 4x + 3, em 6 passos.
+
+1. Identifique a, b e c: a = 1, b = −4, c = 3.
+2. Olhe o sinal do a: positivo, então a parábola abre pra cima.
+3. Calcule as raízes: Δ = 4, logo x = 1 e x = 3.
+4. Calcule o vértice: xv = 2 e yv = −1, então V = (2, −1).
+5. Marque o intercepto Y, (0, 3), e o ponto simétrico, (4, 3).
+6. Ligue os pontos com uma curva suave.
+
+Repara que cada passo usa uma ideia que a gente já viu: o a diz pra onde abre, o Δ diz quantas raízes existem, o vértice mostra o ponto mais baixo, e o c entrega o ponto onde a curva corta o eixo y.
+
+Salva esse post pra revisar o passo a passo e manda nos comentários qual função você quer ver construída na próxima.
+
+#funcaodosegundograu #matematicabasica #parabola #ensinomedio #professoreric
