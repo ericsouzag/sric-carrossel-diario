@@ -1,0 +1,9 @@
+Com a, b e c identificados, sobram duas contas que revelam o resto do gráfico.
+
+Δ = b² − 4ac diz quantas vezes a parábola toca o eixo X: duas vezes, uma vez, ou nenhuma. E o vértice, o ponto mais alto ou mais baixo da curva, sai direto de Xv = −b/2a e Yv = −Δ/4a.
+
+Resolvi um exemplo completo no post: x² − 5x + 6 = 0.
+
+Agora é sua vez: qual é o Δ de x² + 2x + 1 = 0, e quantas raízes ele tem? Comenta sua resposta aqui embaixo.
+
+#funcaodosegundograu #matematicabasica #vertice #discriminante #professoreric

@@ -1,0 +1,9 @@
+No post anterior você achou o Δ de x² + 2x + 1 = 0. Agora a gente fecha essa conta.
+
+A fórmula de Bhaskara usa esse Δ pra achar os valores de x: x = (−b ± √Δ) / 2a. O ± é o motivo de uma equação do 2º grau poder ter até duas respostas diferentes.
+
+Resolvendo x² − 5x + 6 = 0 (o mesmo exemplo dos últimos dias): x = (5 ± 1) / 2, que dá x' = 3 e x'' = 2, exatamente os pontos onde a parábola cruza o eixo X.
+
+Agora fecha o que começou no post anterior: aplica Bhaskara em x² + 2x + 1 = 0 e descobre o valor de x. Comenta aqui embaixo.
+
+#funcaodosegundograu #matematicabasica #formuladebhaskara #bhaskara #professoreric
