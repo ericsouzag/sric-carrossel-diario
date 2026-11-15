@@ -10,19 +10,21 @@ const FPS = 30;
 
 async function main() {
   const slug = process.argv[2];
+  const dirArg = process.argv[3];
   if (!slug) throw new Error('usage: node export-reel.js <slug>');
-  const base = __dirname;
+  const base = dirArg ? path.resolve(dirArg) : __dirname;
   const meta = JSON.parse(fs.readFileSync(path.join(base, `reel-${slug}.meta.json`), 'utf8'));
-  const framesDir = path.join(base, 'reel-frames-' + slug);
+  const framesDir = path.join(process.env.FRAMES_DIR || base, 'reel-frames-' + slug);
   fs.rmSync(framesDir, { recursive: true, force: true });
   fs.mkdirSync(framesDir, { recursive: true });
 
   let browser;
   try {
-    browser = await chromium.launch();
+    browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH, args: ['--no-sandbox'] });
   } catch (e) {
     browser = await chromium.launch({
-      executablePath: 'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
+      executablePath: process.env.CHROMIUM_PATH || 'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
+      args: ['--no-sandbox'],
     });
   }
   const page = await browser.newPage({

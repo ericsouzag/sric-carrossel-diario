@@ -1,0 +1,14 @@
+Chegou o dia de juntar tudo que a gente viu na semana: construir o gráfico de uma função do 2º grau do zero. Neste reel, f(x) = x² − 4x + 3 em 6 passos.
+
+1) Identificar a, b e c: a = 1, b = −4, c = 3.
+2) Concavidade: como a > 0, a parábola abre pra cima.
+3) Raízes: Δ = 4, então x = 1 e x = 3.
+4) Vértice: xᵥ = −b/2a = 2 e yᵥ = f(2) = −1, ou seja, (2, −1).
+5) Intercepto Y: f(0) = 3, no ponto (0, 3). O simétrico em relação a x = 2 é o (4, 3).
+6) Liga os pontos e desenha a parábola.
+
+Agora é com você: tenta fazer o mesmo caminho com f(x) = x² − 6x + 5 e comenta aqui o vértice que você encontrou.
+
+Salva esse reel pra revisar antes da prova e me segue pra mais conteúdo de matemática.
+
+#funcaodosegundograu #matematicabasica #parabola #graficodefuncao #ensinomedio #professoreric
