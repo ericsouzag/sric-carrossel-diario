@@ -18,12 +18,17 @@ async function main() {
   fs.mkdirSync(framesDir, { recursive: true });
 
   let browser;
+  const fallbacks = [
+    'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
+    '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome', // sandbox Linux
+  ];
   try {
     browser = await chromium.launch();
   } catch (e) {
-    browser = await chromium.launch({
-      executablePath: 'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
-    });
+    for (const executablePath of fallbacks) {
+      try { browser = await chromium.launch({ executablePath }); break; } catch (_) {}
+    }
+    if (!browser) throw e;
   }
   const page = await browser.newPage({
     viewport: { width: W, height: H },
