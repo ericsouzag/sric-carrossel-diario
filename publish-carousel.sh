@@ -5,7 +5,8 @@ source "/c/Users/Suporte/Downloads/professor eric instagram/.env.instagram"
 
 DAY="$1"
 N="$2"
-CAPTION_PATH="$3"
+# curl nativo do Windows nao le caminho estilo MSYS (/c/...) com --data-urlencode @arquivo -- converte pra C:\...
+CAPTION_PATH="$(cygpath -w "$3")"
 BASE_URL="https://raw.githubusercontent.com/ericsouzag/sric-carrossel-diario/master/serie-funcao-2grau/$DAY"
 
 echo "=== Publishing $DAY ($N slides) ==="

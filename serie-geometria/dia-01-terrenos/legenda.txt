@@ -1,0 +1,13 @@
+Dois números, duas perguntas diferentes pra mesma forma: quanto dá a volta (perímetro), e quanto cabe dentro (área).
+
+Terreno 1: 5m × 4m → perímetro 18m, área 20m².
+Terreno 2: 6m × 3m → perímetro 18m, igual ao terreno 1, mas área 18m², diferente.
+Terreno 3: 10m × 2m → área 20m², igual ao terreno 1, mas perímetro 24m, diferente.
+
+Duas figuras podem ter o mesmo perímetro e áreas completamente diferentes, ou a mesma área com perímetros diferentes. São duas contas independentes, não a mesma coisa.
+
+Essa semana eu ensino a calcular os dois, pra qualquer forma.
+
+Segue pra não perder.
+
+#geometria #areaeperimetro #matematicabasica #ensinomedio #professoreric
