@@ -22,7 +22,7 @@ async function main() {
     browser = await chromium.launch();
   } catch (e) {
     browser = await chromium.launch({
-      executablePath: 'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
+      executablePath: process.env.CHROMIUM_PATH || 'C:\\Users\\Suporte\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
     });
   }
   const page = await browser.newPage({
