@@ -1,0 +1,14 @@
+Quatro dias de série, e hoje tudo se junta: o gráfico completo de f(x) = x² − 4x + 3, construído em 6 etapas.
+
+1) Identifique a, b e c: a = 1, b = −4, c = 3.
+2) Concavidade: a > 0, a parábola abre pra cima.
+3) Raízes: Δ = 4, então x = 1 e x = 3. Pontos (1, 0) e (3, 0).
+4) Vértice: xv = 2 e yv = −1. Ponto (2, −1), o mais baixo da curva.
+5) Intercepto em Y: f(0) = 3, ponto (0, 3). Pela simetria em torno de x = 2, o ponto (4, 3) também está na curva.
+6) Trace a parábola passando por todos esses pontos.
+
+Esse é o caminho que funciona pra qualquer função do 2º grau. Troca os números e refaz.
+
+Salva esse Reel pra consultar na hora de estudar e me conta nos comentários: qual etapa você mais erra?
+
+#funcaodosegundograu #matematicabasica #parabola #graficos #ensinomedio #professoreric
