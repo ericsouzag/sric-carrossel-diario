@@ -1,0 +1,13 @@
+Perímetro é só uma coisa: somar todos os lados da figura. Sem mistério.
+
+Quadrado (lado 6 m): P = 4 × 6 = 24 m.
+Retângulo (8 m × 3 m): P = 2 × (8 + 3) = 22 m.
+Pentágono regular (lado 4 m): P = 5 × 4 = 20 m.
+
+Se os lados forem diferentes, não tem fórmula mágica: soma um por um. Vale pra qualquer forma, regular ou não.
+
+Desafio: um terreno retangular de 15 m por 4 m. Quanto de cerca você precisa pro perímetro todo? Comenta aqui embaixo.
+
+Amanhã: área — o que cabe dentro da figura.
+
+#geometria #areaeperimetro #matematicabasica #ensinomedio #professoreric

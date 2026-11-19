@@ -351,6 +351,87 @@ function exampleGraphSlide({ index, total, bg, kicker, headline, formulaHtml, ic
   });
 }
 
+// ---------- diagramas de geometria (quadrado, retângulo, triângulo, círculo, pentágono) ----------
+function shapeDiagram(type, opts = {}) {
+  const stroke = T.YELLOW_TINT;
+  const dim = 'rgba(255,255,255,0.85)';
+  const common = `viewBox="0 0 220 170" width="100%" height="100%"`;
+  const label = (x, y, text, anchor = 'middle') => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="${FONT_MONO}" font-size="15" font-weight="700" fill="${dim}">${esc(text)}</text>`;
+  if (type === 'square') {
+    const { side } = opts;
+    return `<svg ${common}>
+      <rect x="50" y="25" width="120" height="120" fill="none" stroke="${stroke}" stroke-width="5"/>
+      ${label(110, 18, side)}
+      ${label(192, 90, side)}
+    </svg>`;
+  }
+  if (type === 'rect') {
+    const { base, height } = opts;
+    return `<svg ${common}>
+      <rect x="30" y="35" width="160" height="100" fill="none" stroke="${stroke}" stroke-width="5"/>
+      ${label(110, 28, base)}
+      ${label(207, 90, height)}
+    </svg>`;
+  }
+  if (type === 'triangle') {
+    const { base, height } = opts;
+    return `<svg ${common}>
+      <polygon points="30,145 190,145 110,25" fill="none" stroke="${stroke}" stroke-width="5" stroke-linejoin="round"/>
+      <line x1="110" y1="145" x2="110" y2="25" stroke="${dim}" stroke-width="2" stroke-dasharray="5,4"/>
+      ${label(110, 163, base)}
+      ${label(130, 88, height)}
+    </svg>`;
+  }
+  if (type === 'circle') {
+    const { r } = opts;
+    return `<svg ${common}>
+      <circle cx="110" cy="90" r="65" fill="none" stroke="${stroke}" stroke-width="5"/>
+      <line x1="110" y1="90" x2="175" y2="90" stroke="${dim}" stroke-width="2.5"/>
+      <circle cx="110" cy="90" r="3" fill="${dim}"/>
+      ${label(142, 83, r)}
+    </svg>`;
+  }
+  if (type === 'pentagon') {
+    const { side } = opts;
+    const cx = 110, cy = 82, R = 60;
+    const pts = [];
+    for (let k = 0; k < 5; k++) {
+      const ang = -Math.PI / 2 + k * (2 * Math.PI / 5);
+      pts.push(`${(cx + R * Math.cos(ang)).toFixed(1)},${(cy + R * Math.sin(ang)).toFixed(1)}`);
+    }
+    return `<svg ${common}>
+      <polygon points="${pts.join(' ')}" fill="none" stroke="${stroke}" stroke-width="5" stroke-linejoin="round"/>
+      ${label(cx, cy + R + 22, side)}
+    </svg>`;
+  }
+  return '';
+}
+
+function shapeFormulaSlide({ index, total, bg, kicker, headline, shape, shapeOpts, formulaLabel, formula, resultLabel, resultValue, note }) {
+  return slideShell({
+    index, total, bg,
+    content: `
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 36px 50px;gap:14px;">
+      ${tag(kicker, bg)}
+      <h2 style="margin:0;font-family:${FONT_HEAD};font-weight:800;font-size:21px;line-height:1.22;color:#fff;">${headline}</h2>
+      <div style="display:flex;gap:14px;align-items:center;">
+        <div style="flex:1;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:10px;height:150px;">
+          ${shapeDiagram(shape, shapeOpts)}
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+          <p style="margin:0;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);">${formulaLabel}</p>
+          <p style="margin:0;font-family:${FONT_MONO};font-size:20px;font-weight:700;color:${T.YELLOW_TINT};">${formula}</p>
+          ${resultValue ? `<div style="margin-top:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.14);">
+            <p style="margin:0;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);">${esc(resultLabel || 'exemplo')}</p>
+            <p style="margin:0;font-family:${FONT_MONO};font-size:17px;font-weight:800;color:#fff;white-space:nowrap;">${resultValue}</p>
+          </div>` : ''}
+        </div>
+      </div>
+      ${note ? `<p style="margin:0;font-family:${FONT_BODY};font-size:13px;line-height:1.4;color:rgba(255,255,255,0.72);">${esc(note)}</p>` : ''}
+    </div>`,
+  });
+}
+
 // ---------- IG frame wrapper ----------
 function buildCarouselPage({ title, slides }) {
   const total = slides.length;
@@ -513,5 +594,5 @@ if (require.main === module) {
 module.exports = {
   heroSlide, textSlide, formulaSlide, stepsSlide, calcSlide, ctaSlide, buildCarouselPage,
   equationLabelsSlide, graphPairSlide, exampleGraphSlide, buildEmbeddableCarousel,
-  realGraph, realGraphSlide, frac, vertexFormulaSlide,
+  realGraph, realGraphSlide, frac, vertexFormulaSlide, shapeDiagram, shapeFormulaSlide,
 };

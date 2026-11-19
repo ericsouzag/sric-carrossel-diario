@@ -1,0 +1,16 @@
+Um terreno, duas contas, dois orçamentos diferentes.
+
+Terreno de 12 m × 8 m. Precisa cercar tudo e gramar tudo.
+
+Cercar (perímetro): 2 × (12 + 8) = 40 m → × R$ 25,00/m = R$ 1.000,00.
+Gramar (área): 12 × 8 = 96 m² → × R$ 18,00/m² = R$ 1.728,00.
+
+Orçamento total: R$ 1.000,00 + R$ 1.728,00 = R$ 2.728,00.
+
+Perímetro e área não são a mesma conta, e cada uma pesa diferente no bolso.
+
+Desafio: terreno de 10 m × 5 m. Cerca a R$ 20,00/m e grama a R$ 15,00/m². Qual o orçamento total? Comenta aqui embaixo.
+
+Essa semana foi perímetro e área, na prática. Salva pra revisar antes da prova.
+
+#geometria #areaeperimetro #matematicabasica #ensinomedio #professoreric

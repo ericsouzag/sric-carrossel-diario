@@ -1,0 +1,16 @@
+Área é o que cabe dentro da figura — não é a volta. Isso é o perímetro, de ontem.
+
+Quadrado (lado 6 m): A = 6 × 6 = 36 m².
+Retângulo (8 m × 3 m): A = 8 × 3 = 24 m².
+Triângulo (base 6 m, altura 4 m): A = (6 × 4) ÷ 2 = 12 m².
+Círculo (raio 5 m): A = 3,14 × 5² = 78,5 m².
+
+Sempre em metro quadrado (m²) — é o que você usa pra comprar piso, gramado, tinta.
+
+Desafio: uma sala quadrada de 4 m de lado. Quantos m² de piso você precisa comprar? Comenta aqui embaixo.
+
+E lembra dos 3 terrenos do Dia 1: mesmo perímetro não garante mesma área. São contas diferentes.
+
+Amanhã: um problema real juntando as duas contas.
+
+#geometria #areaeperimetro #matematicabasica #ensinomedio #professoreric
