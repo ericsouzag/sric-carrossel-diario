@@ -150,12 +150,21 @@ function stepsSlide({ index, total, bg, kicker, headline, steps, footer }) {
 }
 
 function calcLadder(rows) {
-  return rows.map((r, i) => `
-    <div style="display:flex;align-items:baseline;gap:14px;padding:${i === 0 ? '0 0 12px' : '12px 0'};${i > 0 ? `border-top:1px solid rgba(255,255,255,0.14);` : ''}">
-      <span style="font-family:${FONT_MONO};font-size:19px;font-weight:700;color:${r.highlight ? T.YELLOW_TINT : 'rgba(255,255,255,0.55)'};min-width:30px;flex-shrink:0;white-space:nowrap;">${r.op || ''}</span>
-      <span style="font-family:${FONT_MONO};font-size:${r.highlight ? 23 : 19}px;font-weight:${r.highlight ? 800 : 600};color:${r.highlight ? T.YELLOW_TINT : '#fff'};flex-shrink:0;white-space:nowrap;">${r.value}</span>
-      <span style="font-family:${FONT_BODY};font-size:12.5px;line-height:1.35;color:rgba(255,255,255,0.6);flex:1;min-width:0;">${r.note || ''}</span>
-    </div>`).join('');
+  return rows.map((r, i) => {
+    const pad = i === 0 ? '0 0 12px' : '12px 0';
+    const borderTop = i > 0 ? `border-top:1px solid rgba(255,255,255,0.14);` : '';
+    const opSpan = `<span style="font-family:${FONT_MONO};font-size:19px;font-weight:700;color:${r.highlight ? T.YELLOW_TINT : 'rgba(255,255,255,0.55)'};min-width:30px;flex-shrink:0;white-space:nowrap;">${r.op || ''}</span>`;
+    const valueSpan = `<span style="font-family:${FONT_MONO};font-size:${r.highlight ? 23 : 19}px;font-weight:${r.highlight ? 800 : 600};color:${r.highlight ? T.YELLOW_TINT : '#fff'};flex-shrink:0;white-space:nowrap;">${r.value}</span>`;
+    // noteBelow: nota embaixo do cálculo em vez de ao lado -- evita a nota espremer numa coluna estreita e quebrar linha a linha quando op+value já ocupam a largura toda.
+    if (r.noteBelow) {
+      return `<div style="padding:${pad};${borderTop}">
+        <div style="display:flex;align-items:baseline;gap:14px;">${opSpan}${valueSpan}</div>
+        ${r.note ? `<div style="font-family:${FONT_BODY};font-size:12.5px;line-height:1.35;color:rgba(255,255,255,0.6);margin-top:6px;">${r.note}</div>` : ''}
+      </div>`;
+    }
+    const noteSpan = `<span style="font-family:${FONT_BODY};font-size:12.5px;line-height:1.35;color:rgba(255,255,255,0.6);flex:1;min-width:0;">${r.note || ''}</span>`;
+    return `<div style="display:flex;align-items:baseline;gap:14px;padding:${pad};${borderTop}">${opSpan}${valueSpan}${noteSpan}</div>`;
+  }).join('');
 }
 
 // fração com numerador em cima e denominador embaixo (nunca usar a barra "/")
@@ -355,12 +364,13 @@ function exampleGraphSlide({ index, total, bg, kicker, headline, formulaHtml, ic
 function shapeDiagram(type, opts = {}) {
   const stroke = T.YELLOW_TINT;
   const dim = 'rgba(255,255,255,0.85)';
+  const fillColor = opts.fill ? 'rgba(250,204,21,0.3)' : 'none';
   const common = `viewBox="0 0 220 170" width="100%" height="100%"`;
   const label = (x, y, text, anchor = 'middle') => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="${FONT_MONO}" font-size="15" font-weight="700" fill="${dim}">${esc(text)}</text>`;
   if (type === 'square') {
     const { side } = opts;
     return `<svg ${common}>
-      <rect x="50" y="25" width="120" height="120" fill="none" stroke="${stroke}" stroke-width="5"/>
+      <rect x="50" y="25" width="120" height="120" fill="${fillColor}" stroke="${stroke}" stroke-width="5"/>
       ${label(110, 18, side)}
       ${label(192, 90, side)}
     </svg>`;
@@ -368,7 +378,7 @@ function shapeDiagram(type, opts = {}) {
   if (type === 'rect') {
     const { base, height } = opts;
     return `<svg ${common}>
-      <rect x="30" y="35" width="160" height="100" fill="none" stroke="${stroke}" stroke-width="5"/>
+      <rect x="30" y="35" width="160" height="100" fill="${fillColor}" stroke="${stroke}" stroke-width="5"/>
       ${label(110, 28, base)}
       ${label(207, 90, height)}
     </svg>`;
@@ -376,7 +386,7 @@ function shapeDiagram(type, opts = {}) {
   if (type === 'triangle') {
     const { base, height } = opts;
     return `<svg ${common}>
-      <polygon points="30,145 190,145 110,25" fill="none" stroke="${stroke}" stroke-width="5" stroke-linejoin="round"/>
+      <polygon points="30,145 190,145 110,25" fill="${fillColor}" stroke="${stroke}" stroke-width="5" stroke-linejoin="round"/>
       <line x1="110" y1="145" x2="110" y2="25" stroke="${dim}" stroke-width="2" stroke-dasharray="5,4"/>
       ${label(110, 163, base)}
       ${label(130, 88, height)}
@@ -385,7 +395,7 @@ function shapeDiagram(type, opts = {}) {
   if (type === 'circle') {
     const { r } = opts;
     return `<svg ${common}>
-      <circle cx="110" cy="90" r="65" fill="none" stroke="${stroke}" stroke-width="5"/>
+      <circle cx="110" cy="90" r="65" fill="${fillColor}" stroke="${stroke}" stroke-width="5"/>
       <line x1="110" y1="90" x2="175" y2="90" stroke="${dim}" stroke-width="2.5"/>
       <circle cx="110" cy="90" r="3" fill="${dim}"/>
       ${label(142, 83, r)}

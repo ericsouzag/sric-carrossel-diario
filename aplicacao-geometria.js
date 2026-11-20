@@ -8,12 +8,12 @@ const aplicacaoGeometriaSlides = [
   (i, t) => calcSlide({ index: i, total: t, bg: 'gradient', kicker: 'Passo 1 — cercar (perímetro)', headline: 'Quanto de cerca esse terreno precisa', rows: [
     { value: '12 m e 8 m', note: 'base e altura do terreno' },
     { op: '2×(12+8)', value: '40 m', note: 'perímetro: a volta completa' },
-    { op: '× R$25,00', value: 'R$ 1.000,00', note: 'preço da cerca por metro', highlight: true },
+    { op: '× R$25,00', value: 'R$ 1.000,00', note: 'preço da cerca por metro', highlight: true, noteBelow: true },
   ], footer: 'Cercar esse terreno custa R$ 1.000,00.' }),
   (i, t) => calcSlide({ index: i, total: t, bg: 'dark', kicker: 'Passo 2 — gramar (área)', headline: 'Quanto de grama esse terreno precisa', rows: [
     { value: '12 m × 8 m', note: 'base vezes altura' },
     { op: '=', value: '96 m²', note: 'área: o que cabe dentro do terreno' },
-    { op: '× R$18,00', value: 'R$ 1.728,00', note: 'preço do m² de grama', highlight: true },
+    { op: '× R$18,00', value: 'R$ 1.728,00', note: 'preço do m² de grama', highlight: true, noteBelow: true },
   ], footer: 'Gramar esse terreno custa R$ 1.728,00.' }),
   (i, t) => calcSlide({ index: i, total: t, bg: 'gradient', kicker: 'Juntando tudo', headline: 'O orçamento completo do terreno', rows: [
     { value: 'R$ 1.000,00', note: 'cerca (perímetro)' },
