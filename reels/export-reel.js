@@ -7,6 +7,14 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 const W = 540, H = 960, SCALE = 2; // -> 1080x1920 frames
 const FPS = 30;
+// Regra de capa do feed: o Instagram gera a miniatura do Reel a partir dos
+// primeiros frames do vídeo. Como todo Reel abre com o fundo azul do gradiente
+// (sem nada ainda desenhado), toda publicação ficava com a MESMA miniatura no
+// feed. Fix: depois de capturar a animação inteira, prefixamos alguns frames
+// (poucos milissegundos, imperceptível ao assistir) repetindo a ÚLTIMA tela do
+// vídeo (a de fechamento/CTA) -- que já é diferente em cada Reel -- então o
+// Instagram pega essa imagem como miniatura em vez do fundo azul vazio.
+const COVER_MS = 180;
 
 async function main() {
   const slug = process.argv[2];
@@ -43,6 +51,18 @@ async function main() {
   }
   await browser.close();
   console.log('captured', totalFrames, 'frames');
+
+  // prefixa cópias do último frame (tela de fechamento) pra servir de miniatura no feed
+  const coverFrames = Math.max(1, Math.round((COVER_MS / 1000) * FPS));
+  const frameName = (i) => path.join(framesDir, `f${String(i).padStart(5, '0')}.png`);
+  const lastFrameBuffer = fs.readFileSync(frameName(totalFrames - 1));
+  for (let i = totalFrames - 1; i >= 0; i--) {
+    fs.renameSync(frameName(i), frameName(i + coverFrames));
+  }
+  for (let i = 0; i < coverFrames; i++) {
+    fs.writeFileSync(frameName(i), lastFrameBuffer);
+  }
+  console.log('prefixed', coverFrames, 'cover frames (', COVER_MS, 'ms) using the closing screen');
 
   const outDir = base;
   const mp4Path = path.join(outDir, `reel-${slug}.mp4`);
