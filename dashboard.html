@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Σric — Painel de Conteúdo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#306898; --light:#577C8D; --dark:#1F2937; --yellow:#FACC15; --yellow-tint:#FFCE3D;
+    --bg:#14171B; --panel:#1C2026; --border:rgba(241,239,230,0.1); --text:#F1EFE6; --sub:#9AA0A8;
+    --green:#3DD68C; --amber:#FFCE3D; --gray:#5A626C;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Public Sans',system-ui,sans-serif;padding:40px 24px 80px;}
+  .wrap{max-width:980px;margin:0 auto;}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:12px;}
+  h1{font-family:'Archivo',serif;font-weight:900;font-size:28px;margin:0;}
+  h1 span{color:var(--yellow);}
+  .updated{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub);}
+  .summary{display:flex;gap:14px;margin:22px 0 36px;flex-wrap:wrap;}
+  .stat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 20px;min-width:140px;}
+  .stat .n{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:var(--yellow-tint);}
+  .stat .l{font-size:12px;color:var(--sub);margin-top:2px;}
+  .theme{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin-bottom:28px;}
+  .theme-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:10px;}
+  .theme-title{font-family:'Archivo',serif;font-weight:800;font-size:20px;}
+  .theme-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
+  .badge-done{background:rgba(61,214,140,0.15);color:var(--green);border:1px solid rgba(61,214,140,0.3);}
+  .badge-progress{background:rgba(255,206,61,0.15);color:var(--amber);border:1px solid rgba(255,206,61,0.3);}
+  .theme-sub{color:var(--sub);font-size:13px;margin-bottom:18px;}
+  .progress-track{height:5px;background:rgba(241,239,230,0.08);border-radius:3px;overflow:hidden;margin-bottom:20px;}
+  .progress-fill{height:100%;background:var(--yellow);border-radius:3px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--sub);font-weight:600;padding:0 10px 10px;border-bottom:1px solid var(--border);}
+  td{padding:12px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  .day-tag{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--yellow-tint);}
+  .fmt{display:inline-block;font-size:11px;padding:3px 9px;border-radius:6px;background:rgba(90,104,152,0.25);color:#A8C5E8;}
+  .status{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px;}
+  .dot{width:7px;height:7px;border-radius:50%;}
+  .dot-pub{background:var(--green);}
+  .dot-pending{background:var(--amber);}
+  .dot-building{background:var(--gray);}
+  a.link{color:#5AB0F5;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;}
+  a.link:hover{text-decoration:underline;}
+  .date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub);}
+  .next-themes{background:var(--panel);border:1px dashed var(--border);border-radius:16px;padding:22px 28px;color:var(--sub);font-size:13.5px;line-height:1.6;}
+  .next-themes b{color:var(--text);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Painel de Conteúdo — Professor <span>Σ</span>ric</h1>
+    <div class="updated">atualizado em 20/11/2026</div>
+  </header>
+
+  <div class="summary">
+    <div class="stat"><div class="n">2</div><div class="l">temas no total</div></div>
+    <div class="stat"><div class="n">10</div><div class="l">posts publicados</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">posts construídos, a publicar</div></div>
+  </div>
+
+  <!-- ===================== SÉRIE 1 ===================== -->
+  <div class="theme">
+    <div class="theme-head">
+      <div class="theme-title">Função do 2º grau</div>
+      <div class="theme-badge badge-done">Completa — 5/5</div>
+    </div>
+    <div class="theme-sub">13–19 nov · 1 Reel de abertura + 3 carrosséis + 1 Reel de fechamento</div>
+    <div class="progress-track"><div class="progress-fill" style="width:100%;"></div></div>
+    <table>
+      <tr><th>Dia</th><th>Tópico</th><th>Formato</th><th>Status</th><th>Publicado em</th><th>Link</th></tr>
+      <tr>
+        <td class="day-tag">01</td><td>Introdução — a parábola do dia a dia</td><td><span class="fmt">Reel</span></td>
+        <td><span class="status"><span class="dot dot-pub"></span>Publicado</span></td>
+        <td class="date">13/11 19:05</td><td><a class="link" href="https://www.instagram.com/reel/DfsqWbhgqb1/" target="_blank">ver post ↗</a></td>
+      </tr>
+      <tr>
+        <td class="day-tag">02</td><td>Os 3 elementos da equação (a, b, c)</td><td><span class="fmt">Carrossel</span></td>
+        <td><span class="status"><span class="dot dot-pub"></span>Publicado</span></td>
+        <td class="date">15/11 10:36</td><td><a class="link" href="https://www.instagram.com/p/Dfw5zEHlaBj/" target="_blank">ver post ↗</a></td>
+      </tr>
+      <tr>
+        <td class="day-tag">03</td><td>Delta e vértice</td><td><span class="fmt">Carrossel</span></td>
+        <td><span class="status"><span class="dot dot-pub"></span>Publicado</span></td>
+        <td class="date">16/11 12:41</td><td><a class="link" href="https://www.instagram.com/p/Dfzs2SuFnbF/" target="_blank">ver post ↗</a></td>
+      </tr>
+      <tr>
+        <td class="day-tag">04</td><td>Fórmula de Bhaskara</td><td><span class="fmt">Carrossel</span></td>
+        <td><span class="status"><span class="dot dot-pub"></span>Publicado</span></td>
+        <td class="date">17/11 09:15</td><td><a class="link" href="https://www.instagram.com/p/Df16IXuFsFD/" target="_blank">ver post ↗</a></td>
+      </tr>
+      <tr>
+        <td class="day-tag">05</td><td>Construção completa do gráfico (6 passos)</td><td><span class="fmt">Reel</span></td>
+        <td><span class="status"><span class="dot dot-pub"></span>Publicado</span></td>
+        <td class="date">19/11 14:34</td><td><a class="link" href="https://www.instagram.com/reel/Df7oEClnPyk/" target="_blank">ver post ↗</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ===================== SÉRIE 2 ===================== -->
+  <div class="theme">
+    <div class="theme-head">
+      <div class="theme-title">Geometria — área e perímetro</div>
+      <div class="theme-badge badge-progress">Em publicação — 1/4 publicados</div>
+    </div>
+    <div class="theme-sub">construída em 16–19 nov · 1 Reel de abertura + 3 carrosséis · demais dias aguardando aprovação</div>
+    <div class="progress-track"><div class="progress-fill" style="width:25%;"></div></div>
+    <table>
+      <tr><th>Dia</th><th>Tópico</th><th>Formato</th><th>Status</th><th>Previsto para</th><th>Link</th></tr>
+      <tr>
+        <td class="day-tag">01</td><td>3 terrenos — comparando área e perímetro</td><td><span class="fmt">Reel</span></td>
+        <td><span class="status"><span class="dot dot-pub"></span>Publicado</span></td>
+        <td class="date">20/11 11:29</td><td><a class="link" href="https://www.instagram.com/reel/Df93tK3js2f/" target="_blank">ver post ↗</a></td>
+      </tr>
+      <tr>
+        <td class="day-tag">02</td><td>Perímetro — fórmulas por figura</td><td><span class="fmt">Carrossel</span></td>
+        <td><span class="status"><span class="dot dot-pending"></span>Pronto, aguardando programação</span></td>
+        <td class="date">a definir</td><td><span class="date">—</span></td>
+      </tr>
+      <tr>
+        <td class="day-tag">03</td><td>Área — fórmulas por figura</td><td><span class="fmt">Carrossel</span></td>
+        <td><span class="status"><span class="dot dot-pending"></span>Pronto, aguardando programação</span></td>
+        <td class="date">a definir</td><td><span class="date">—</span></td>
+      </tr>
+      <tr>
+        <td class="day-tag">04</td><td>Problema real — orçamento de um terreno</td><td><span class="fmt">Carrossel</span></td>
+        <td><span class="status"><span class="dot dot-pending"></span>Pronto, aguardando programação</span></td>
+        <td class="date">a definir</td><td><span class="date">—</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="next-themes">
+    <b>Próximos temas:</b> ainda não definidos — a decidir com o professor Σric na sequência da Geometria.
+  </div>
+</div>
+</body>
+</html>

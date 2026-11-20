@@ -6,7 +6,8 @@
 
 set -e
 DIR="/c/Users/Suporte/Downloads/professor eric instagram/skills_uteis/carrossel-diario"
-SERIE="$DIR/serie-funcao-2grau"
+SERIE_NOME="${1:-serie-funcao-2grau}"
+SERIE="$DIR/$SERIE_NOME"
 STATE_FILE="$SERIE/.ultimo-dia-publicado"
 LOG="$DIR/publish-next-day.log"
 
@@ -19,7 +20,7 @@ NEXT_PADDED=$(printf "%02d" "$NEXT")
 FOLDER=$(ls -d "$SERIE"/dia-${NEXT_PADDED}-* 2>/dev/null | head -1)
 
 if [ -z "$FOLDER" ]; then
-  log "Dia $NEXT ainda nao tem pasta pronta em serie-funcao-2grau/. Nada publicado hoje."
+  log "Dia $NEXT ainda nao tem pasta pronta em $SERIE_NOME/. Nada publicado hoje."
   exit 0
 fi
 
@@ -37,7 +38,7 @@ if [ "$N" -eq 0 ]; then
 fi
 
 log "Publicando $DAYNAME ($N slides)..."
-bash "$DIR/publish-carousel.sh" "$DAYNAME" "$N" "$CAPTION" 2>&1 | tee -a "$LOG"
+bash "$DIR/publish-carousel.sh" "$SERIE_NOME" "$DAYNAME" "$N" "$CAPTION" 2>&1 | tee -a "$LOG"
 
 if [ "${PIPESTATUS[0]}" -eq 0 ]; then
   echo "$NEXT" > "$STATE_FILE"

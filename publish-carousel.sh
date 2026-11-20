@@ -1,13 +1,14 @@
 #!/bin/bash
-# Usage: publish-carousel.sh <day-folder-name> <num-slides> <caption-windows-path>
+# Usage: publish-carousel.sh <serie-folder> <day-folder-name> <num-slides> <caption-windows-path>
 set -e
 source "/c/Users/Suporte/Downloads/professor eric instagram/.env.instagram"
 
-DAY="$1"
-N="$2"
+SERIE="$1"
+DAY="$2"
+N="$3"
 # curl nativo do Windows nao le caminho estilo MSYS (/c/...) com --data-urlencode @arquivo -- converte pra C:\...
-CAPTION_PATH="$(cygpath -w "$3")"
-BASE_URL="https://raw.githubusercontent.com/ericsouzag/sric-carrossel-diario/master/serie-funcao-2grau/$DAY"
+CAPTION_PATH="$(cygpath -w "$4")"
+BASE_URL="https://raw.githubusercontent.com/ericsouzag/sric-carrossel-diario/master/$SERIE/$DAY"
 
 echo "=== Publishing $DAY ($N slides) ==="
 
