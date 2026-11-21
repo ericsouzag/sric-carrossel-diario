@@ -1,0 +1,50 @@
+name: Publicar proximo dia (carrosseis)
+
+# Roda na nuvem, independente do computador do usuario estar ligado ou nao.
+# So publica o que ja esta aprovado e pronto numa pasta dia-0N-* (slides +
+# legenda.txt) -- nunca gera conteudo novo. A aprovacao continua manual,
+# feita em conversa antes do dia entrar na pasta final da serie.
+
+on:
+  schedule:
+    - cron: '15 12 * * *' # 09:15 America/Sao_Paulo (UTC-3)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Rodar em modo teste (nao publica de verdade, nao avanca estado)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+      DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publicar proximo dia - Funcao do 2 grau
+        continue-on-error: true
+        run: bash publish-next-day.sh serie-funcao-2grau
+
+      - name: Publicar proximo dia - Geometria
+        continue-on-error: true
+        run: bash publish-next-day.sh serie-geometria
+
+      - name: Salvar estado atualizado (se mudou)
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add serie-funcao-2grau/.ultimo-dia-publicado serie-geometria/.ultimo-dia-publicado
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza estado da fila de publicacao diaria [skip ci]"
+            git push
+          else
+            echo "Nada mudou no estado, nada pra commitar."
+          fi

@@ -3,9 +3,12 @@
 # So publica um carrossel que ja tem pasta pronta (slide_N.png) e legenda.txt --
 # nunca gera conteudo novo aqui. Se o proximo dia nao existir ainda (ex. ainda
 # nao foi aprovado), nao faz nada e sai sem erro -- nao trava o agendamento.
+# DRY_RUN=1 roda tudo sem publicar de verdade e sem avancar o estado (so teste).
 
 set -e
-DIR="/c/Users/Suporte/Downloads/professor eric instagram/skills_uteis/carrossel-diario"
+# DIR = pasta onde este script esta, nao um caminho fixo -- assim funciona tanto
+# local (Windows/Git-Bash) quanto na nuvem (GitHub Actions, outro caminho).
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SERIE_NOME="${1:-serie-funcao-2grau}"
 SERIE="$DIR/$SERIE_NOME"
 STATE_FILE="$SERIE/.ultimo-dia-publicado"
@@ -37,12 +40,16 @@ if [ "$N" -eq 0 ]; then
   exit 1
 fi
 
-log "Publicando $DAYNAME ($N slides)..."
+log "Publicando $DAYNAME ($N slides)...${DRY_RUN:+ [DRY-RUN]}"
 bash "$DIR/publish-carousel.sh" "$SERIE_NOME" "$DAYNAME" "$N" "$CAPTION" 2>&1 | tee -a "$LOG"
 
 if [ "${PIPESTATUS[0]}" -eq 0 ]; then
-  echo "$NEXT" > "$STATE_FILE"
-  log "$DAYNAME publicado com sucesso. Estado atualizado para $NEXT."
+  if [ "$DRY_RUN" = "1" ]; then
+    log "[dry-run] $DAYNAME simulado com sucesso. Estado NAO alterado (e so teste)."
+  else
+    echo "$NEXT" > "$STATE_FILE"
+    log "$DAYNAME publicado com sucesso. Estado atualizado para $NEXT."
+  fi
 else
   log "ERRO ao publicar $DAYNAME. Estado NAO avancado -- vai tentar o mesmo dia de novo amanha."
   exit 1
