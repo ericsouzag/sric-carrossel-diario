@@ -16,6 +16,10 @@ LOG="$DIR/publish-next-day.log"
 
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG"; }
 
+# sincroniza com o remoto antes de ler o estado -- local e CI (GitHub Actions)
+# podem rodar isso, e sem isso os dois divergem (um nao ve o avanco do outro).
+git -C "$DIR" pull --quiet 2>/dev/null || true
+
 LAST=$(cat "$STATE_FILE" 2>/dev/null || echo 0)
 NEXT=$((LAST + 1))
 NEXT_PADDED=$(printf "%02d" "$NEXT")
@@ -36,8 +40,10 @@ if [ ! -f "$CAPTION" ]; then
   exit 1
 fi
 if [ "$N" -eq 0 ]; then
-  log "ERRO: $DAYNAME nao tem slide_N.png (pode ser um Reel, nao carrossel -- esse script so publica carrossel). Nada publicado."
-  exit 1
+  # Reel (video), nao carrossel -- esse script so publica carrossel. Nao e erro,
+  # so pula: Reels sao publicados manualmente, que ai avanca o estado na mao.
+  log "$DAYNAME e um Reel (sem slide_N.png), nao um carrossel. Pulando -- precisa ser publicado manualmente."
+  exit 0
 fi
 
 log "Publicando $DAYNAME ($N slides)...${DRY_RUN:+ [DRY-RUN]}"
@@ -49,6 +55,17 @@ if [ "${PIPESTATUS[0]}" -eq 0 ]; then
   else
     echo "$NEXT" > "$STATE_FILE"
     log "$DAYNAME publicado com sucesso. Estado atualizado para $NEXT."
+    # registra o avanco no git tambem (local e CI commitam o mesmo arquivo --
+    # sem isso os dois lados divergem). Best-effort: nao falha a publicacao
+    # se o push nao for possivel agora.
+    (
+      cd "$DIR" || exit 0
+      git config user.name >/dev/null 2>&1 || git config user.name "github-actions[bot]"
+      git config user.email >/dev/null 2>&1 || git config user.email "github-actions[bot]@users.noreply.github.com"
+      git add "$STATE_FILE"
+      git diff --cached --quiet || git commit -q -m "Atualiza estado da fila de publicacao diaria [skip ci]"
+      git push --quiet
+    ) 2>>"$LOG" || log "AVISO: nao consegui sincronizar o estado com o git agora (publicacao em si deu certo)."
   fi
 else
   log "ERRO ao publicar $DAYNAME. Estado NAO avancado -- vai tentar o mesmo dia de novo amanha."

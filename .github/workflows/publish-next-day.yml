@@ -36,15 +36,6 @@ jobs:
         continue-on-error: true
         run: bash publish-next-day.sh serie-geometria
 
-      - name: Salvar estado atualizado (se mudou)
-        if: ${{ github.event.inputs.dry_run != 'true' }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add serie-funcao-2grau/.ultimo-dia-publicado serie-geometria/.ultimo-dia-publicado
-          if ! git diff --cached --quiet; then
-            git commit -m "Atualiza estado da fila de publicacao diaria [skip ci]"
-            git push
-          else
-            echo "Nada mudou no estado, nada pra commitar."
-          fi
+      - name: Publicar proximo dia - Geometria Espacial
+        continue-on-error: true
+        run: bash publish-next-day.sh serie-geometria-espacial
