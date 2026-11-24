@@ -1,0 +1,12 @@
+Volume é quanto cabe dentro de uma forma, em 3D. Sempre em metro cúbico (m³).
+
+Cubo (lado 4 m): V = 4³ = 64 m³.
+Paralelepípedo (5 m × 3 m × 2 m): V = 5 × 3 × 2 = 30 m³.
+
+O cubo é só um paralelepípedo especial, com os 3 lados iguais.
+
+Desafio: uma caixa de 6 m de comprimento, 4 m de largura e 3 m de altura. Qual o volume dela? Comenta aqui embaixo.
+
+Amanhã: cilindro — a primeira forma redonda em 3D.
+
+#geometriaespacial #volume #matematicabasica #ensinomedio #professoreric

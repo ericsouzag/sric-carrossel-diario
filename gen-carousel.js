@@ -414,6 +414,66 @@ function shapeDiagram(type, opts = {}) {
       ${label(cx, cy + R + 22, side)}
     </svg>`;
   }
+  // ---- sólidos (geometria espacial) -- desenho isométrico simples: 3 faces (topo, frente, lado) ----
+  if (type === 'box' || type === 'cube') {
+    // caixa isometrica: FBL = canto inferior-esquerdo da frente; frontW/frontH = frente; depth = profundidade (largura)
+    const frontW = type === 'cube' ? 90 : 100;
+    const frontH = type === 'cube' ? 90 : 70;
+    const depth = 30; // deslocamento isometrico (x,-y) pra tras
+    const depthY = 20;
+    const FBLx = 48, FBLy = 150;
+    const FTL = [FBLx, FBLy - frontH];
+    const FTR = [FBLx + frontW, FBLy - frontH];
+    const FBR = [FBLx + frontW, FBLy];
+    const BTL = [FTL[0] + depth, FTL[1] - depthY];
+    const BTR = [FTR[0] + depth, FTR[1] - depthY];
+    const BBR = [FBR[0] + depth, FBR[1] - depthY];
+    const pt = (p) => `${p[0]},${p[1]}`;
+    const top = `${pt(FTL)} ${pt(FTR)} ${pt(BTR)} ${pt(BTL)}`;
+    const right = `${pt(FTR)} ${pt(BTR)} ${pt(BBR)} ${pt(FBR)}`;
+    const front = `${pt(FTL)} ${pt(FTR)} ${pt(FBR)} ${FBLx},${FBLy}`;
+    let labels = '';
+    if (type === 'cube') {
+      labels = label((FBLx + FBR[0]) / 2, FBLy + 20, opts.side);
+    } else {
+      labels = label((FBLx + FBR[0]) / 2, FBLy + 20, opts.comprimento)
+        + label((FTL[0] + BTL[0]) / 2 - 18, (FTL[1] + BTL[1]) / 2 - 2, opts.largura)
+        + label(FBLx - 20, (FTL[1] + FBLy) / 2, opts.altura);
+    }
+    return `<svg ${common}>
+      <polygon points="${top}" fill="rgba(255,255,255,0.1)" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="${right}" fill="rgba(0,0,0,0.22)" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+      <polygon points="${front}" fill="rgba(0,0,0,0.05)" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+      ${labels}
+    </svg>`;
+  }
+  if (type === 'cylinder') {
+    const { r: rLabel, h: hLabel } = opts;
+    const cx = 110, topY = 42, botY = 140, rx = 55, ry = 16;
+    return `<svg ${common}>
+      <line x1="${cx - rx}" y1="${topY}" x2="${cx - rx}" y2="${botY}" stroke="${stroke}" stroke-width="4"/>
+      <line x1="${cx + rx}" y1="${topY}" x2="${cx + rx}" y2="${botY}" stroke="${stroke}" stroke-width="4"/>
+      <path d="M${cx - rx},${botY} A${rx},${ry} 0 0 1 ${cx + rx},${botY}" fill="none" stroke="${dim}" stroke-width="2" stroke-dasharray="4,4"/>
+      <path d="M${cx - rx},${botY} A${rx},${ry} 0 0 0 ${cx + rx},${botY}" fill="none" stroke="${stroke}" stroke-width="4"/>
+      <ellipse cx="${cx}" cy="${topY}" rx="${rx}" ry="${ry}" fill="rgba(255,255,255,0.1)" stroke="${stroke}" stroke-width="4"/>
+      <line x1="${cx}" y1="${topY}" x2="${cx + rx}" y2="${topY}" stroke="${dim}" stroke-width="2.5"/>
+      ${label(cx + rx / 2, topY - 8, rLabel)}
+      ${label(cx + rx + 20, (topY + botY) / 2, hLabel)}
+    </svg>`;
+  }
+  if (type === 'sphere') {
+    const { r: rLabel } = opts;
+    const cx = 110, cy = 92, R = 58;
+    const ang = -Math.PI / 4.5;
+    const ex = cx + R * Math.cos(ang), ey = cy + R * Math.sin(ang);
+    return `<svg ${common}>
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${stroke}" stroke-width="4"/>
+      <ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="${R * 0.3}" fill="none" stroke="${dim}" stroke-width="2" stroke-dasharray="4,4"/>
+      <line x1="${cx}" y1="${cy}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="${dim}" stroke-width="2.5"/>
+      <circle cx="${cx}" cy="${cy}" r="3" fill="${dim}"/>
+      ${label((cx + ex) / 2 + 6, (cy + ey) / 2 - 8, rLabel)}
+    </svg>`;
+  }
   return '';
 }
 
@@ -425,15 +485,15 @@ function shapeFormulaSlide({ index, total, bg, kicker, headline, shape, shapeOpt
       ${tag(kicker, bg)}
       <h2 style="margin:0;font-family:${FONT_HEAD};font-weight:800;font-size:21px;line-height:1.22;color:#fff;">${headline}</h2>
       <div style="display:flex;gap:14px;align-items:center;">
-        <div style="flex:1;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:10px;height:150px;">
+        <div style="flex:1;min-width:0;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:10px;height:150px;">
           ${shapeDiagram(shape, shapeOpts)}
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;">
           <p style="margin:0;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);">${formulaLabel}</p>
           <p style="margin:0;font-family:${FONT_MONO};font-size:20px;font-weight:700;color:${T.YELLOW_TINT};">${formula}</p>
           ${resultValue ? `<div style="margin-top:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.14);">
             <p style="margin:0;font-family:${FONT_MONO};font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.55);">${esc(resultLabel || 'exemplo')}</p>
-            <p style="margin:0;font-family:${FONT_MONO};font-size:17px;font-weight:800;color:#fff;white-space:nowrap;">${resultValue}</p>
+            <p style="margin:0;font-family:${FONT_MONO};font-size:17px;font-weight:800;color:#fff;">${resultValue}</p>
           </div>` : ''}
         </div>
       </div>

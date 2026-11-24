@@ -1,0 +1,11 @@
+Volume é quanto cabe dentro de uma forma — mas agora em 3D.
+
+Num cubo dá pra contar: um cubo de 4 m de lado cabe exatamente 64 cubinhos de 1 m dentro dele. V = 4³ = 64 m³. É literalmente uma contagem.
+
+Só que num cilindro isso não funciona — não dá pra empilhar cubinhos dentro de uma forma redonda sem sobrar espaço vazio entre eles. Por isso cada forma tem sua própria fórmula, pensada pro formato dela.
+
+Essa semana: cubo, cilindro e esfera, fórmula por fórmula — e no fim, uma aplicação real: quantos litros cabem numa caixa d'água.
+
+Segue pra não perder.
+
+#geometriaespacial #volume #matematicabasica #ensinomedio #professoreric

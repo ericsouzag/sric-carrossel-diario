@@ -1,0 +1,13 @@
+A esfera é a forma mais redonda que existe — e tem a fórmula mais pesada.
+
+V = (4 ÷ 3) × π × r³
+
+Esfera de raio 3 m: r³ = 27 → × 3,14 = 84,78 → × 4 ÷ 3 = 113,04 m³.
+
+Bola, planeta, bolha de sabão — qualquer coisa perfeitamente redonda em 3D é uma esfera. É a forma que guarda o maior volume possível pra uma dada área de superfície.
+
+Desafio: uma bola de raio 2 m. Qual o volume dela? Comenta aqui embaixo.
+
+Amanhã fechamos com uma aplicação real: a caixa d'água.
+
+#geometriaespacial #volume #matematicabasica #ensinomedio #professoreric

@@ -1,0 +1,14 @@
+Quantos litros cabem numa caixa d'água?
+
+Caixa cilíndrica: raio de 0,5 m e altura de 2 m.
+
+Passo 1 — volume em m³: 3,14 × 0,5² × 2 = 1,57 m³.
+Passo 2 — de m³ pra litro: todo m³ vira 1.000 L, então 1,57 × 1.000 = 1.570 litros.
+
+Essa caixa d'água guarda 1.570 litros.
+
+Desafio: uma caixa d'água cúbica de 1 m de lado. Quantos litros ela guarda? Comenta aqui embaixo.
+
+Essa semana foi cubo, cilindro e esfera, na prática. Salva pra revisar antes da prova.
+
+#geometriaespacial #volume #matematicabasica #ensinomedio #professoreric

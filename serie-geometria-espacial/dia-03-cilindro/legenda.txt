@@ -1,0 +1,13 @@
+A primeira forma redonda: o cilindro.
+
+Mesma lógica do paralelepípedo — área da base vezes altura. Só que a base é um círculo, então usa a área que você já conhece: π × r².
+
+Cilindro (raio 3 m, altura 5 m): V = 3,14 × 3² × 5 = 141,3 m³.
+
+Lata, cano, silo, caixa d'água redonda — tudo isso é um cilindro.
+
+Desafio: um cano cilíndrico com raio 0,5 m e 4 m de comprimento. Qual o volume dele? Comenta aqui embaixo.
+
+Amanhã: esfera — a forma mais redonda de todas.
+
+#geometriaespacial #volume #matematicabasica #ensinomedio #professoreric

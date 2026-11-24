@@ -80,12 +80,30 @@ const THEMES = {
       const read = (p) => fs.readFileSync(path.join(__dirname, p), 'utf8').trim();
       return [
         { type: 'video', dayLabel: 'Dia 1 — Reel', status: 'published', videoPath: 'dia-01-terrenos/reel-terrenos.mp4', caption: read('serie-geometria/dia-01-terrenos/legenda.txt') },
-        { type: 'carousel', dayLabel: 'Dia 2 — Carrossel', status: 'ready', id: 'd2', slides: perimetroSlides, caption: read('serie-geometria/dia-02-perimetro/legenda.txt') },
-        { type: 'carousel', dayLabel: 'Dia 3 — Carrossel', status: 'ready', id: 'd3', slides: areaSlides, caption: read('serie-geometria/dia-03-area/legenda.txt') },
-        { type: 'carousel', dayLabel: 'Dia 4 — Carrossel', status: 'ready', id: 'd4', slides: aplicacaoGeometriaSlides, caption: read('serie-geometria/dia-04-aplicacao/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 2 — Carrossel', status: 'published', id: 'd2', slides: perimetroSlides, caption: read('serie-geometria/dia-02-perimetro/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 3 — Carrossel', status: 'published', id: 'd3', slides: areaSlides, caption: read('serie-geometria/dia-03-area/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 4 — Carrossel', status: 'published', id: 'd4', slides: aplicacaoGeometriaSlides, caption: read('serie-geometria/dia-04-aplicacao/legenda.txt') },
       ];
     },
     outDir: 'serie-geometria',
+  },
+  espacial: {
+    title: 'Simulação — Série Geometria Espacial (volumes)',
+    days: () => {
+      const { volumeCuboSlides } = require('./volume-cubo.js');
+      const { volumeCilindroSlides } = require('./volume-cilindro.js');
+      const { volumeEsferaSlides } = require('./volume-esfera.js');
+      const { aplicacaoVolumeSlides } = require('./aplicacao-volume.js');
+      const read = (p) => fs.readFileSync(path.join(__dirname, p), 'utf8').trim();
+      return [
+        { type: 'video', dayLabel: 'Dia 1 — Reel', status: 'ready', videoPath: 'dia-01-volume-intro/reel-volume-intro.mp4', caption: read('serie-geometria-espacial/dia-01-volume-intro/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 2 — Carrossel', status: 'ready', id: 'e2', slides: volumeCuboSlides, caption: read('serie-geometria-espacial/dia-02-cubo/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 3 — Carrossel', status: 'ready', id: 'e3', slides: volumeCilindroSlides, caption: read('serie-geometria-espacial/dia-03-cilindro/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 4 — Carrossel', status: 'ready', id: 'e4', slides: volumeEsferaSlides, caption: read('serie-geometria-espacial/dia-04-esfera/legenda.txt') },
+        { type: 'carousel', dayLabel: 'Dia 5 — Carrossel', status: 'ready', id: 'e5', slides: aplicacaoVolumeSlides, caption: read('serie-geometria-espacial/dia-05-aplicacao/legenda.txt') },
+      ];
+    },
+    outDir: 'serie-geometria-espacial',
   },
 };
 
